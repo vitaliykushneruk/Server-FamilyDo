@@ -1,4 +1,4 @@
-package com.kushneruk.vitaliy.serverfamilydo.config;
+package com.kushneruk.vitaliy.serverfamilydo.config.database;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
