@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+        logicalFilePath="table--97f6f7e1-3858-437a-b01f-36ed788c1e79">
+        <changeSet id="" author="vitaliy.kushneruk">
+                <createTable tableName="user">
+                    <column name="id" type="INTEGER">
+                    <constraints
+                            primaryKey="true"
+                            primaryKeyName="pk_user_id"
+                    />
+                    </column>
+                    <column name="userName" type="VARCHAR(255)">
+                        <constraints
+                                primaryKey="true"
+                                primaryKeyName="pk_user_userName"
+                        />
+                    </column>
+                    <column name="password" type="VARCHAR(255)"/>
+                </createTable>
+        </changeSet>
+</databaseChangeLog>

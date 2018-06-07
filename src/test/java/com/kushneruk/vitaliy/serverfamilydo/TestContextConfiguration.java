@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @ActiveProfiles(Profiles.TEST)
-@SpringBootTest(classes = DatabaseTestConfig.class)
+@SpringBootTest(classes ={DatabaseTestConfig.class})
 @RunWith(SpringRunner.class)
 public abstract class TestContextConfiguration {
 
