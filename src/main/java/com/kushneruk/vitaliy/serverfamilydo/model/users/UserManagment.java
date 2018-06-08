@@ -1,13 +1,20 @@
 package com.kushneruk.vitaliy.serverfamilydo.model.users;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Slf4j
+@Transactional
 public class UserManagment {
 
     public static final String USER_WITH_THAT_NAME_ALREADY_EXISTS = "User with that name already exists!";
@@ -32,6 +39,11 @@ public class UserManagment {
         log.info("user save {}", user);
 
         return userRepository.save(user);
+    }
+
+    public List<User> findAll() {
+
+        return Lists.newArrayList(userRepository.findAll());
     }
 
     private void registerValidation(String username, String password) {
