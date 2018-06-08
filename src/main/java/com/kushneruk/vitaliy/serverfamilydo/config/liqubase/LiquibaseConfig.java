@@ -17,11 +17,13 @@ public class LiquibaseConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.liquibase")
     LiquibaseProperties liquibaseProperties(){
+
         return new LiquibaseProperties();
     }
 
     @Bean
     SpringLiquibase liquibase() {
+
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog(liquibaseProperties().getChangeLog());
         liquibase.setDefaultSchema(liquibaseProperties().getDefaultSchema());
