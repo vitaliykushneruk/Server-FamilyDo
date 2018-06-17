@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+        logicalFilePath="table--97f6f7e1-3858-437a-b01f-36ed788c1e79">
+        <changeSet id="0a5791cf-4acb-4dd9-a2d4-779e20780cc4" author="vitaliy.kushneruk">
+                <createTable tableName="user">
+                    <column name="id" type="integer">
+                    <constraints
+                            primaryKey="true"
+                            primaryKeyName="pk_user_id"
+                    />
+                    </column>
+                    <column name="userName" type="varchar(255)">
+                    </column>
+                    <column name="password" type="varchar(255)"/>
+                </createTable>
+            <addAutoIncrement tableName="user" columnName="id" incrementBy="1" columnDataType="integer" startWith="100"/>
+            <addUniqueConstraint tableName="user" columnNames="userName" constraintName="constraint_username"/>
+            <createIndex tableName="user" indexName="idx_userName" unique="true">
+                <column name="userName"></column>
+            </createIndex>
+            <createIndex tableName="user" indexName="idx_id" unique="true">
+                <column name="id"></column>
+            </createIndex>
+        </changeSet>
+</databaseChangeLog>
