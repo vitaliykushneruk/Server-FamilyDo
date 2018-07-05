@@ -24,8 +24,10 @@ public class UserDto {
 
     private String email;
 
+    @NotNull
     private String userName;
 
+    @NotNull
     private String password;
 
     private String matchingPassword;

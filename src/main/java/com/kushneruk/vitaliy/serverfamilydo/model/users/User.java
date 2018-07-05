@@ -14,7 +14,15 @@ import org.springframework.data.domain.Persistable;
 public class User implements Persistable<Integer> {
     @Id
     Integer id;
+
+    String firstName;
+
+    String lastName;
+
+    String email;
+
     String userName;
+
     String password;
 
     @Override
