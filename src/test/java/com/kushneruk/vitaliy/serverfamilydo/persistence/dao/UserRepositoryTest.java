@@ -1,13 +1,12 @@
-package com.kushneruk.vitaliy.serverfamilydo.model.users;
+package com.kushneruk.vitaliy.serverfamilydo.persistence.dao;
 
 import com.google.common.collect.Iterables;
 import com.kushneruk.vitaliy.serverfamilydo.TestContextConfiguration;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,9 +39,9 @@ public class UserRepositoryTest extends TestContextConfiguration {
     }
 
     @Test
-    public void  findByUsername(){
+    public void  findByUsername() {
 
-       Optional<User> user = userRepository.findByUsername(userName);
-       assertNotNull(user.get().getId());
+        User user = userRepository.findUserByUserName(userName);
+        assertNotNull(user.getId());
     }
 }
