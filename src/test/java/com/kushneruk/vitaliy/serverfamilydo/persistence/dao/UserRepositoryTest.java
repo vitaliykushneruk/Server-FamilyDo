@@ -1,8 +1,7 @@
-package com.kushneruk.vitaliy.serverfamilydo.persistence;
+package com.kushneruk.vitaliy.serverfamilydo.persistence.dao;
 
 import com.google.common.collect.Iterables;
 import com.kushneruk.vitaliy.serverfamilydo.TestContextConfiguration;
-import com.kushneruk.vitaliy.serverfamilydo.persistence.dao.UserRepository;
 import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import org.junit.After;
 import org.junit.Before;

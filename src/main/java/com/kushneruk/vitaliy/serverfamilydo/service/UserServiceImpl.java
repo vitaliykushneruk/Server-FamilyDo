@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
     private boolean userNameExists(final String userName) {
         return Optional.ofNullable(userRepository.findUserByUserName(userName)).isPresent();
     }
+
+    @Override
+    public void createVerificationTokenForUser(User user, String token) {
+
+    }
 }
