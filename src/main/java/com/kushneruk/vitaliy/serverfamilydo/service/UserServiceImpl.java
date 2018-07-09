@@ -1,13 +1,15 @@
 package com.kushneruk.vitaliy.serverfamilydo.service;
 
-import com.kushneruk.vitaliy.serverfamilydo.model.users.User;
-import com.kushneruk.vitaliy.serverfamilydo.model.users.UserRepository;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.dao.UserRepository;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import com.kushneruk.vitaliy.serverfamilydo.web.dto.UserDto;
 import com.kushneruk.vitaliy.serverfamilydo.web.error.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -44,6 +46,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private boolean userNameExists(final String userName) {
-        return userRepository.findByUsername(userName).isPresent();
+        return Optional.ofNullable(userRepository.findUserByUserName(userName)).isPresent();
     }
 }

@@ -1,7 +1,7 @@
 package com.kushneruk.vitaliy.serverfamilydo.service;
 
-import com.kushneruk.vitaliy.serverfamilydo.model.users.User;
-import com.kushneruk.vitaliy.serverfamilydo.model.users.UserRepository;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.dao.UserRepository;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import com.kushneruk.vitaliy.serverfamilydo.web.dto.UserDto;
 import com.kushneruk.vitaliy.serverfamilydo.web.error.UserAlreadyExistException;
 import org.junit.Before;
@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.kushneruk.vitaliy.serverfamilydo.service.UserServiceImpl.ERROR_EXISTS_USER_NAME;
-import static java.util.Optional.ofNullable;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -53,7 +52,7 @@ public class UserServiceImplTest {
     @Test
     public void registerNewUserWithExistsUser() {
         UserDto newUser = UserDto.builder().build();
-        when(userRepository.findByUsername(newUser.getUserName())).thenReturn(ofNullable(User.builder().build()));
+        when(userRepository.findUserByUserName(newUser.getUserName())).thenReturn(User.builder().build());
         thrown.expect(UserAlreadyExistException.class);
         thrown.expectMessage(ERROR_EXISTS_USER_NAME);
         userService.registerNewUser(newUser);

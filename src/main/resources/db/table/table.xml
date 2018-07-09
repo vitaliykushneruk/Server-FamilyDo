@@ -15,17 +15,33 @@
                             primaryKeyName="pk_user_id"
                     />
                     </column>
-                    <column name="userName" type="varchar(255)">
-                    </column>
+                    <column name="first_name" type="varchar(255)"/>
+                    <column name="last_name" type="varchar(255)"/>
+                    <column name="email" type="varchar(255)"/>
+                    <column name="user_name" type="varchar(255)"/>
                     <column name="password" type="varchar(255)"/>
                 </createTable>
             <addAutoIncrement tableName="user" columnName="id" incrementBy="1" columnDataType="integer" startWith="100"/>
-            <addUniqueConstraint tableName="user" columnNames="userName" constraintName="constraint_username"/>
+            <addUniqueConstraint tableName="user" columnNames="user_name" constraintName="constraint_username"/>
             <createIndex tableName="user" indexName="idx_userName" unique="true">
-                <column name="userName"></column>
+                <column name="user_name"></column>
             </createIndex>
             <createIndex tableName="user" indexName="idx_id" unique="true">
                 <column name="id"></column>
             </createIndex>
         </changeSet>
+
+    <changeSet id="28c90177-e0b0-43e3-8cd9-9732502e5a1d" author="vitaliy.kushneruk">
+        <createTable tableName="task_list">
+            <column name="id" type="integer">
+                <constraints
+                        primaryKey="true"
+                        primaryKeyName="pk_task_list_id"
+                />
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="date_create" type="datetime"/>
+        </createTable>
+        <addAutoIncrement tableName="task_list" columnName="id" incrementBy="1" columnDataType="integer" startWith="100"/>
+    </changeSet>
 </databaseChangeLog>
