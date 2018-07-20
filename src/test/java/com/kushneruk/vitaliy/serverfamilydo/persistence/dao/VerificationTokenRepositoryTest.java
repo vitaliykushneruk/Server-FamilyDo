@@ -3,12 +3,14 @@ package com.kushneruk.vitaliy.serverfamilydo.persistence.dao;
 import com.kushneruk.vitaliy.serverfamilydo.TestContextConfiguration;
 import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import com.kushneruk.vitaliy.serverfamilydo.persistence.model.VerificationToken;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import javax.transaction.Transactional;
+
+@Transactional
 public class VerificationTokenRepositoryTest extends TestContextConfiguration {
 
     public static final String TEST_STRING = "test_string";
@@ -24,13 +26,7 @@ public class VerificationTokenRepositoryTest extends TestContextConfiguration {
         final User build = User.builder().build();
         userRepository.save(build);
     }
-
-    @After
-    public void tearDown() {
-        verificationTokenRepository.deleteAll();
-        userRepository.deleteAll();
-    }
-
+    
     @Test(expected = DataIntegrityViolationException.class)
     public void verificationTokenWithNullToken() {
         final User user = userRepository.findAll().get(0);

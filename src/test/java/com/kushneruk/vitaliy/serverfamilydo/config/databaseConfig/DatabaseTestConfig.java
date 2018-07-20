@@ -1,4 +1,4 @@
-package com.kushneruk.vitaliy.serverfamilydo.config.DatabaseConfig;
+package com.kushneruk.vitaliy.serverfamilydo.config.databaseConfig;
 
 import com.kushneruk.vitaliy.serverfamilydo.infrastructure.property.Profiles;
 import org.springframework.boot.context.properties.ConfigurationProperties;

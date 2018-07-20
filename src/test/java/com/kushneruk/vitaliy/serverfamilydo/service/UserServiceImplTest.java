@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.kushneruk.vitaliy.serverfamilydo.service.UserServiceImpl.ERROR_EXISTS_USER_NAME;
+import static com.kushneruk.vitaliy.serverfamilydo.service.UserServiceImp.ERROR_EXISTS_USER_NAME;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -24,7 +24,7 @@ public class UserServiceImplTest {
 
     public static final String ENCODE = "ENCODE";
     @InjectMocks
-    private UserServiceImpl userService;
+    private UserServiceImp userService;
 
     @Mock
     private UserRepository userRepository;

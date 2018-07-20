@@ -4,7 +4,6 @@ import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
 import com.kushneruk.vitaliy.serverfamilydo.registration.OnRegistrationCompleteEvent;
 import com.kushneruk.vitaliy.serverfamilydo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -21,11 +20,12 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Value("${app.support.email}")
-    String supportEmail;
-
     @Override
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {
+        confirmRegistration(event);
+    }
+
+    private void confirmRegistration(final OnRegistrationCompleteEvent event){
         final User user = event.getUser();
         final String token = UUID.randomUUID().toString();
         userService.createVerificationTokenForUser(user, token);
@@ -42,7 +42,6 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         email.setTo(recipientAddress);
         email.setSubject(subject);
         email.setText(message + " \r\n" + confirmationUrl);
-        email.setFrom(supportEmail);
         return email;
     }
 }
