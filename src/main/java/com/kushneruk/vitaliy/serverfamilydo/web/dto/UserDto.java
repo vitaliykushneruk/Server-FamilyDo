@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -14,14 +13,16 @@ import javax.validation.constraints.Size;
 //@PasswordMatches
 @Builder
 public class UserDto {
+
     @NotNull
-    @Size(min = 1,message = "{userDto.firstName.Size}")
+//    @Size(min = 1,message = "{userDto.firstName.Size}")
     private String firstName;
 
     @NotNull
-    @Size(min = 1,message = "{userDto.firstName.Size}")
+//    @Size(min = 1,message = "{userDto.firstName.Size}")
     private String lastName;
 
+    @NotNull
     private String email;
 
     @NotNull
@@ -29,6 +30,6 @@ public class UserDto {
 
     @NotNull
     private String password;
-
+    @NotNull
     private String matchingPassword;
 }

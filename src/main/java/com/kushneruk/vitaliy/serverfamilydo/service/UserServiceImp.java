@@ -1,7 +1,9 @@
 package com.kushneruk.vitaliy.serverfamilydo.service;
 
 import com.kushneruk.vitaliy.serverfamilydo.persistence.dao.UserRepository;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.dao.VerificationTokenRepository;
 import com.kushneruk.vitaliy.serverfamilydo.persistence.model.User;
+import com.kushneruk.vitaliy.serverfamilydo.persistence.model.VerificationToken;
 import com.kushneruk.vitaliy.serverfamilydo.web.dto.UserDto;
 import com.kushneruk.vitaliy.serverfamilydo.web.error.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +15,15 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImp implements UserService {
 
-    public static final String ERROR_EXISTS_USER_NAME = "User with this UserName exists {}";
+    public static final String ERROR_EXISTS_USER_NAME = "User with this UserName exists";
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    VerificationTokenRepository tokenRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -27,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public User registerNewUser(final UserDto userDto) {
         log.debug("userDto: {}", userDto);
         if (userNameExists(userDto.getUserName())) {
-            final String message = ERROR_EXISTS_USER_NAME + userDto.getUserName();
+            final String message = ERROR_EXISTS_USER_NAME + " " + userDto.getUserName();
             log.error(message);
             throw new UserAlreadyExistException(message);
         }
@@ -51,6 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createVerificationTokenForUser(User user, String token) {
-
+        final VerificationToken verificationToken = VerificationToken.builder().token(token).user(user).build();
+        tokenRepository.save(verificationToken);
     }
 }
